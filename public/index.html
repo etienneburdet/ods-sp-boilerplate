@@ -1,27 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="ods-widgets">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Web site created using create-snowpack-app" />
     <link rel="stylesheet" type="text/css" href="/index.css" />
-    <title>Snowpack App</title>
+    <title>Snowpack App with ods widgets</title>
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular-animate.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular-sanitize.js"></script>
+    <script src="https://help.opendatasoft.com/widgets/grunt-scripts/ods-widgets.js"></script>
+    <script src="https://help.opendatasoft.com/widgets/grunt-scripts/docs-load-css.js"></script>
   </head>
   <body>
-    <img id="img" src="/logo.svg" />
-    <canvas id="canvas"></canvas>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <script type="module" src="/_dist_/index.js"></script>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+    <ods-dataset-context
+    context="ctx"
+    ctx-domain="https://widgets-examples.opendatasoft.com/"
+    ctx-dataset="les-arbres-remarquables-de-paris">
+      <div ods-adv-analysis="myData"
+          ods-adv-analysis-context="ctx"
+          ods-adv-analysis-select="(sum(hauteur)/count(espece)) as y_axis"
+          ods-adv-analysis-where="arrondissement LIKE 'paris'"
+          ods-adv-analysis-group-by="espece as x_axis">
+          {{myData}}
+      </div>
+    </ods-dataset-context>
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
   </body>
 </html>
